@@ -15,7 +15,7 @@ module.exports = {
       },
       documento: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       tipo: {
         type: Sequelize.STRING,

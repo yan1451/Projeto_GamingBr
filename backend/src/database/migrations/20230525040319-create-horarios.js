@@ -9,14 +9,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      restaurante_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'restaurantes',
-          key: 'id'
-        }
-      },
       segunda: {
         type: Sequelize.STRING
       },
@@ -37,6 +29,14 @@ module.exports = {
       },
       domingo: {
         type: Sequelize.STRING
+      },
+      restaurante_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'restaurantes',
+          key: 'id'
+        }
       },
     });
   },
