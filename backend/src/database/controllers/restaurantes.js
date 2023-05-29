@@ -5,7 +5,10 @@ const criarRestaurantes = async (req, res, next) => {
   try {
     
     const { data } = req.body;
-    const novoRestaurante = await service.criarRestaurantes(data);
+
+    if(data.name === "" && data.tipo === "") return res.status(400).json({ message: 'Campos incorretos'});
+
+    const novoRestaurante = await service.criarRestaurantes(data);    
   
     const restauranteId = novoRestaurante.dataValues.id;
 
@@ -16,6 +19,7 @@ const criarRestaurantes = async (req, res, next) => {
     }
     return res.status(200).json({ novoRestaurante });
   } catch (error) {
+    console.log(error);
     next(error)
   }
 }
