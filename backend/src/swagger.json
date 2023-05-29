@@ -1,0 +1,117 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Api para cadastro de restaurantes",
+    "description": "",
+    "termsOfService": "",
+    "contact": {
+      "email": "yan.brasileiro@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [{
+    "url": "http://localhost:3001",
+    "description": "Api de produção"
+  }],
+  "paths": {
+    "/restaurantes": {
+      "post": {
+        "summary": "Cadastro de Restaurante",
+        "description": "Cadastro de Restaurante",
+        "tags": ["Restaurantes"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Restaurante"
+              },
+              "examples": {
+                "restaurantes": {
+                  "value": {
+                    "name": "Bar do tião",
+                    "documento": "",
+                    "tipo": "Bar"
+                  }
+                }
+              }
+            }
+          }          
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Restaurante"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/restaurantes/verificar": {
+      "post": {
+        "description": "Verificar Horario de funcionamento pelo nome, data e horario",
+        "summary": "Verificar Horario de funcionamento pelo nome, data e horario",
+        "tags": ["Restaurantes"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/Restaurante"
+              },
+              "examples": {
+                "restaurantes": {
+                  "value": {
+                    "name": "Bar do tio"
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "400": {
+              "description": "Bad Request"
+            },
+            "200": {
+              "description": "Ok",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": ""
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }    
+  },
+  "components": {
+    "schemas": {
+      "Restaurante": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "documento": {
+            "type": "string"
+          },
+          "tipo": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,5 +1,6 @@
 const express = require('express');
 const restaurantesRouter = require('../database/routes/restaurantes');
+const cors = require('cors');
 
 const app = express();
 
@@ -10,6 +11,7 @@ const accessControl = (_req, res, next) => {
   next();
 };
 
+app.use(cors());
 app.use(accessControl);
 app.use(express.json());
 app.use('/restaurantes', restaurantesRouter);
