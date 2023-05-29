@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import VisualizarRestaurantes from "./BtnVisualizar";
 import Header from "./header";
+import '../styles/componentes/verificarFuncionamento.css';
 import * as moment from 'moment'; import 'moment/locale/pt-br';
 import Cadastrar from "./BtnCadastro";
 import { requestData } from "../services/request";
+
 
 const VerficiarFuncionamento = () => {
   const [name, setName] = useState('');
   const [data, setData] = useState('');
   const [error, setError] = useState([]); 
   const [restaurante, setRestaurante] = useState('');
+  const [messagemError, setMensagemError] = useState('');
 
   const diaSemana = moment(data).format('LLLL').split(",")[0];
   const horas = moment(data).format('LT');
@@ -25,18 +28,18 @@ const VerficiarFuncionamento = () => {
 
     if (newArray) {
 
-          return <h1>Restaurante está aberto</h1>
+          return <h3>Restaurante está aberto</h3>
 
         } else if (horas < restaurante[0]) {
 
-          return <h1> Restaurante abre as {restaurante[0]} </h1>
+          return <h3> Restaurante abre as {restaurante[0]} </h3>
 
         } else if (restaurante[(restaurante.length / 2) - 1] <= horas && horas <= restaurante[restaurante.length / 2]) {
 
-          return <h1> restaurante abre as  {restaurante[parseInt(((restaurante.length - 1) / 2 + 1))]}</h1>
+          return <h3> restaurante abre as  {restaurante[parseInt(((restaurante.length - 1) / 2 + 1))]}</h3>
 
         } else {
-          return <h1> restaurante estava aberto as {restaurante[restaurante.length - 1]} </h1>
+          return <h3> restaurante estava aberto as {restaurante[restaurante.length - 1]} </h3>
         }
       }
     }
@@ -75,8 +78,7 @@ const isOpen = async (e) => {
     }
 
   } catch (error) {
-
-    console.log(error);
+    setMensagemError('Not Found');
   }
 }
 
@@ -108,8 +110,9 @@ return (
             placeholder="Data e Hora"
           />
         </label>
-        <button type='submit' onClick={(e) => isOpen(e)}> Validar </button>
+        <button type='submit' className="btn-verificar" onClick={(e) => isOpen(e)}> Verificar  </button>
         {restaurante.length !== 0 && statusMessagem(restaurante)}
+        { (messagemError) && <h3> Restaurante Não Encontrado!! </h3>}
       </form>
     </section>
   </>
