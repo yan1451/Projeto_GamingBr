@@ -3,11 +3,13 @@ const serviceHorarios = require('../services/horarios');
 
 const criarRestaurantes = async (req, res, next) => {
   try {
-    const novoRestaurante = await service.criarRestaurantes(req.body);
-
+    
+    const { data } = req.body;
+    const novoRestaurante = await service.criarRestaurantes(data);
+  
     const restauranteId = novoRestaurante.dataValues.id;
 
-    await serviceHorarios.criarHorarioDeFuncionamento({ ...req.body, restauranteId });
+    await serviceHorarios.criarHorarioDeFuncionamento({ ...data, restauranteId });
 
     if (!novoRestaurante) {
       return res.status(400).json({ message: 'algo deu errado' });
@@ -18,6 +20,18 @@ const criarRestaurantes = async (req, res, next) => {
   }
 }
 
+const obterRestaurante = async (req, res, next) => {
+  try {
+    const { name } = req.body;
+    const restauranteExistente = await service.obterRestaurante(name);
+    if(restauranteExistente) return res.status(200).json(restauranteExistente);
+    return res.status(404).json({ message: 'Not Found!'});
+  } catch (error) {
+    next(error);
+  }
+}
+
 module.exports = {
   criarRestaurantes,
+  obterRestaurante
 }
