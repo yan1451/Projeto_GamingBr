@@ -2,14 +2,41 @@ import React, { useState } from "react";
 import '../styles/pages/index.css';
 import CadastroRestaurante from "../componentes/cadastroRestaurantes";
 import CadastroHorarioFuncionamento from "../componentes/cadastroHorarioFuncionamento";
+import Header from "../componentes/header";
 import { useMultiStep } from "../hooks/useMultStep";
+import Cadastrar from "../componentes/BtnCadastro";
+import VisualizarRestaurantes from "../componentes/BtnVisualizar";
+import { createData } from "../services/request";
+
 
 const Index = () => {
 
   const restaurante = {
     name: "",
     documento: "",
-    tipo: ""
+    tipo: "",
+    segunda: "",
+    terca: "",
+    quarta: "",
+    quinta: "",
+    sexta: "",
+    sabado: "",
+    domingo: "",
+  }
+
+  const cadastro = async (e) => {
+    e.preventDefault();
+
+    try {
+      const endpoint = "restaurantes";
+
+      await createData(endpoint, {
+        data
+      });
+
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   const handleChange = (key, value) => {
@@ -22,17 +49,28 @@ const Index = () => {
   }
   const [data, setData] = useState(restaurante);
 
-  const componentes = [<CadastroRestaurante
-    data={data}
-    handleChange={handleChange}
-  />, <CadastroHorarioFuncionamento />, 0]
+  const componentes = [
+    <CadastroRestaurante data={data} handleChange={handleChange} />,
+    <CadastroHorarioFuncionamento data={data} handleChange={handleChange} />]
 
   const { currentStep, currentComponente, nextStep } = useMultiStep(componentes);
   return (
     <>
+    <Header
+    Page="index"
+    PrimeiroLinkNavegacao={ Cadastrar }
+    SegundoLinkNavegacao={VisualizarRestaurantes}
+    />
+    <div className="main">
       {currentComponente}
-      {currentStep !== 0 && <button type="submit" onClick={(e) => nextStep(currentStep - 1)}> voltar  </button>}
-      {currentStep === componentes.length - 1 ? <button type="submit" > criar </button> : <button type="submit" onClick={(e) => nextStep(currentStep + 1)}> proxima </button>}
+      <div className="btns">
+        {currentStep !== 0 && <button type="submit" className="btn-voltar" onClick={() => nextStep(currentStep - 1)}> Voltar  </button>}
+        {
+          currentStep === componentes.length - 1 ? <button type="submit" onClick={(e) => cadastro(e)} className="btn-criar"> Cadastrar </button>
+            :
+            <button type="submit" className="btn-proxima" onClick={() => nextStep(currentStep + 1)}> Proxima </button>}
+      </div>
+    </div>
     </>)
 }
 
