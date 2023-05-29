@@ -1,11 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
+import '../styles/componentes/cadastroRestaurantes.css'
 
-const CadastroRestaurante = () => {
-
-  const [name, setName] = useState("");
-  const [documento, setDocumento] = useState("");
-  const [tipo, setTipo] = useState("");
-
+const CadastroRestaurante = ({ data, handleChange }) => {
   return (
     <section className="cadastro-restaurantes">
       <form>
@@ -14,8 +10,8 @@ const CadastroRestaurante = () => {
           <input
             id="name-input"
             type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={data.name}
+            onChange={(e) => handleChange("name", e.target.value)}
             placeholder="Nome"
           />
         </label>
@@ -23,8 +19,8 @@ const CadastroRestaurante = () => {
           <input
             id="documento-input"
             type="text"
-            value={documento}
-            onChange={(e) => setDocumento(e.target.value)}
+            value={data.documento}
+            onChange={(e) => handleChange("documento", e.target.value)}
             placeholder="Documento"
           />
         </label>
@@ -32,8 +28,8 @@ const CadastroRestaurante = () => {
           <input
             id="tipo-input"
             type="text"
-            value={tipo}
-            onChange={(e) => setTipo(e.target.value)}
+            value={data.tipo}
+            onChange={(e) => handleChange("tipo", e.target.value)}
             placeholder="Tipo"
           />
         </label>
