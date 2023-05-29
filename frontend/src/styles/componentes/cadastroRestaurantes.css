@@ -1,0 +1,48 @@
+.cadastro-restaurantes {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.cadastro-restaurantes form {
+  align-items: center;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 2px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 400px;
+  width: 700px;
+}
+
+.cadastro-restaurantes form h1 {
+  align-items: center;
+  display: flex;
+  font-family: Verdana, Tahoma, sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  text-align: center;
+  margin: 0px 0px 40px 0px;
+}
+
+.cadastro-restaurantes form input {
+  background: white;
+  border: 1px solid #e1e5eb;
+  border-radius: 8px;
+  display: flex;
+  height: 30px;
+  margin: 10px 2px 20px 5px;
+  padding: 12px 16px;
+  width: 500px;
+}
+
+.cadastro-restaurantes form input::placeholder {
+  color: #6b7588;
+  font-family: Verdana, Tahoma, sans-serif;
+  font-size: 14px;
+  line-height: 150%;
+  text-align: center;
+}
