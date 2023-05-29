@@ -12,7 +12,7 @@ module.exports = {
       segunda: {
         type: Sequelize.STRING
       },
-      terca: {
+      terça: {
         type: Sequelize.STRING
       },
       quarta: {
@@ -24,7 +24,7 @@ module.exports = {
       sexta: {
         type: Sequelize.STRING
       },
-      sabado: {
+      sábado: {
         type: Sequelize.STRING
       },
       domingo: {
