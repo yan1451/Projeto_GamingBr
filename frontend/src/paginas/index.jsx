@@ -35,7 +35,7 @@ const Index = () => {
       });
       window.location.reload();
     } catch (error) {
-      alert('Preencha Todos os Campos');
+      console.log(error);
     }
   }
 
