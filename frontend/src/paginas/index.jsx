@@ -33,9 +33,9 @@ const Index = () => {
       await createData(endpoint, {
         data
       });
-
+      window.location.reload();
     } catch (error) {
-      console.log(error);
+      alert('Preencha Todos os Campos');
     }
   }
 
