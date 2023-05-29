@@ -1,0 +1,45 @@
+.common-header {
+  align-items: center;
+  position: fixed;
+  height: 50px;
+  background: #002c33;
+  bottom: 2.33%;
+  display: flex;
+  justify-content: flex-end;
+  left: 0%;
+  padding: 20px 50px;
+  right: 0%;
+  top: -2.33%;
+}
+
+.common-header a {
+  align-items: center;
+  justify-content: center;
+  background: #2fc18c;
+  border-radius: 8px;
+  color: white;
+  display: flex;
+  font-family: Verdana , Tahoma , sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  text-align: center;
+  font-weight: 700;
+  margin-top: 15px;
+  height: 40px;
+  padding: 5px;
+  line-height: 150%;
+  margin-right: 10px;
+  text-decoration: none;
+  width: 164px;
+}
+
+.common-header a:hover {
+  background: #32a791;
+  transition: (
+    200ms
+    cubic-bezier(0.08, 0.52, 0.52, 1)
+    200ms
+    cubic-bezier(0.08, 0.52, 0.52, 1)
+    box-shadow , 200ms cubic-bezier(0.08, 0.52, 0.52, 1) transform
+  );
+}
