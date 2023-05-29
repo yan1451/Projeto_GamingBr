@@ -2,21 +2,21 @@ const { horarios } = require('../models');
 
 const criarHorarioDeFuncionamento = async ({
   segunda,
-  terca,
+  terça,
   quarta,
   quinta,
   sexta,
-  sabado,
+  sábado,
   domingo,
   restauranteId
 }) => {
   const novoHorario = await horarios.create({
     segunda,
-    terca,
+    terça,
     quarta,
     quinta,
     sexta,
-    sabado,
+    sábado,
     domingo,
     restaurante_id: restauranteId
   });
